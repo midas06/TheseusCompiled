@@ -119,15 +119,18 @@ namespace TheseusCompiled
                         }
                     }
 
-                    /*** NB:
+                    /*** Fixes:
+                     * 17/11
                         fixed bad spacing when T & M on same row
+                     * 18/11
+                     *  changed fix to when T/M on furthest column
                         */
                     if (x == theMinotaur.Coordinate.X && y == theMinotaur.Coordinate.Y)
                     {
 
                         StringBuilder minoPosition = new StringBuilder(output);
-                        if (OnSameLine(theTheseus, theMinotaur) && theTheseus.Coordinate.X < theMinotaur.Coordinate.X)
-                        {
+                        if (x == width - 1)//(OnSameLine(theTheseus, theMinotaur) && theTheseus.Coordinate.X < theMinotaur.Coordinate.X && x == (width - 1))
+                        { 
                             minoPosition[output.Length - 3] = 'M';
                         }
                         else
@@ -140,7 +143,7 @@ namespace TheseusCompiled
                     if (x == theTheseus.Coordinate.X && y == theTheseus.Coordinate.Y)
                     {
                         StringBuilder thesPosition = new StringBuilder(output);
-                        if (OnSameLine(theTheseus, theMinotaur) && theTheseus.Coordinate.X > theMinotaur.Coordinate.X)
+                        if (x == width - 1)//(OnSameLine(theTheseus, theMinotaur) && theTheseus.Coordinate.X > theMinotaur.Coordinate.X && x == (width - 1))
                         {
                             thesPosition[output.Length - 3] = 'T';
                         }
