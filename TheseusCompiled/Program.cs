@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace TheseusCompiled
 {
@@ -11,7 +12,10 @@ namespace TheseusCompiled
     {
         static void Main(string[] args)
         {
-            new Controller(new ConsoleView(), new Game(), new FileHandler(), new LevelBuilder()).Init();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new GameForm());
+            //new Controller(new ConsoleView(), new Game(), new FileHandler(), new LevelBuilder()).Init();
 
 
 
