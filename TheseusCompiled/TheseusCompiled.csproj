@@ -42,14 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AMap.cs" />
+    <Compile Include="Bridger.cs" />
     <Compile Include="Character.cs" />
-    <Compile Include="Controller_Game.cs" />
+    <Compile Include="Compressor.cs" />
+    <Compile Include="ConsoleView.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="Decompressor.cs" />
+    <Compile Include="FileHandler.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="IView_Game.cs" />
+    <Compile Include="IView.cs" />
+    <Compile Include="LevelBuilder.cs" />
+    <Compile Include="Loader.cs" />
     <Compile Include="MapCreator.cs" />
     <Compile Include="Minotaur.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Saver.cs" />
     <Compile Include="Theseus.cs" />
     <Compile Include="Thing.cs" />
     <Compile Include="Tile.cs" />

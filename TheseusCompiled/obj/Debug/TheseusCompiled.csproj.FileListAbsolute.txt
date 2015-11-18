@@ -1,1 +1,6 @@
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusCompiled\TheseusCompiled\bin\Debug\TheseusCompiled.exe.config
+H:\2015\semester 2\PR 283 C#\Theseus\TheseusCompiled\TheseusCompiled\obj\Debug\TheseusCompiled.csprojResolveAssemblyReference.cache
+H:\2015\semester 2\PR 283 C#\Theseus\TheseusCompiled\TheseusCompiled\bin\Debug\TheseusCompiled.exe
+H:\2015\semester 2\PR 283 C#\Theseus\TheseusCompiled\TheseusCompiled\bin\Debug\TheseusCompiled.pdb
+H:\2015\semester 2\PR 283 C#\Theseus\TheseusCompiled\TheseusCompiled\obj\Debug\TheseusCompiled.exe
+H:\2015\semester 2\PR 283 C#\Theseus\TheseusCompiled\TheseusCompiled\obj\Debug\TheseusCompiled.pdb

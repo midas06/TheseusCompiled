@@ -11,10 +11,11 @@ namespace TheseusCompiled
     {
         Minotaur minotaur;
         Theseus theseus;
+        AMap currentMap;
         Tile[,] theMap;
-        Filer2 theFiler;
-        IView_Game theView;
-        int currentMap;
+        FileHandler theFiler;
+        IView theView;
+        //int currentMap;
         /*string mapOne = ".___.___.___.   .\n|     M     |    \n.   .___.   .___.\n|       |     X  \n.   .___.   .___.\n|     T     |    \n.___.___.___.   .";
         string mapTwo = ".___.___.___.___.___.___.___.\n|                           |\n.   .   .   .   .   .   .   .\n| M |   | T                 |\n.   .___.   .   .   .   .   .\n|                   |   |   |\n.   .   .   .   .   .___.   .\n|                           |\n.___.   .___.___.___.___.___.\n    | X |                    \n.   .   .   .   .   .   .   .";
         string mapThree = ".___.___.___.   .\n|     M     |    \n.   .___.   .___.\n|     T       X  \n.   .   .   .___.\n|   |       |    \n.___.   .   .   .\n|           |    \n.___.___.___.   .";
@@ -23,23 +24,23 @@ namespace TheseusCompiled
 
         /**** Import Map from Filer */
 
-        public void Init(IView_Game newView)
-        {
-            theFiler = new Filer2();
 
+        public void Init(IView newView, FileHandler newFiler)
+        {
+            SetFiler(newFiler);
             SetView(newView);
-            SetMap(mapThree);
-            SetTheseus(theFiler.GetTheseus());
-            SetMinotaur(theFiler.GetMinotaur());
         }
 
-
-        public void SetMap(string newMap)
+        public void SetMap()
         {
-            theFiler = new Filer2();
-            theFiler.Init(newMap);
-            theMap = theFiler.GetMap();
+            currentMap = theFiler.GetMap();
+            theMap = currentMap.Tiles;
+            SetTheseus();
+            SetMinotaur();
         }
+
+
+
 
         /*public void Restart()
         {
@@ -58,14 +59,21 @@ namespace TheseusCompiled
             Run();  
         }
         */
-        protected void SetTheseus(Theseus newTheseus)
+        public void SetFiler(FileHandler newFiler)
         {
-            theseus = newTheseus;
+            theFiler = newFiler;
+        }
+
+
+
+        protected void SetTheseus()
+        {
+            theseus = currentMap.TheTheseus;
             theseus.SetGame(this);
         }
-        protected void SetMinotaur(Minotaur newMinotaur)
+        protected void SetMinotaur()
         {
-            minotaur = newMinotaur;
+            minotaur = currentMap.TheMinotaur;
             minotaur.SetGame(this);
         }
 
@@ -148,17 +156,17 @@ namespace TheseusCompiled
             return false;
         }
 
-        public int GetLevel()
+        /*public int GetLevel()
         {
             return currentMap;
-        }
+        }*/
         /*
         public int GetTotalMaps()
         {
             return theFiler.GetTotalMaps();
         }*/
 
-        public void SetView(IView_Game newView)
+        public void SetView(IView newView)
         {
             theView = newView;
         }
@@ -167,7 +175,7 @@ namespace TheseusCompiled
         public bool Run()
         {
             theView.Start();
-            theView.Display("**** LEVEL " + currentMap.ToString() + " ****\n");
+            theView.Display("****" + currentMap.Name + " ****\n");
             theView.Display(MapCreator.ObjectsToString(theMap, theseus, minotaur));
             while (IsGameOver() == false)
             {

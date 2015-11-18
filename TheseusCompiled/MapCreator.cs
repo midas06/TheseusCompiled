@@ -119,17 +119,36 @@ namespace TheseusCompiled
                         }
                     }
 
-
+                    /*** NB:
+                        fixed bad spacing when T & M on same row
+                        */
                     if (x == theMinotaur.Coordinate.X && y == theMinotaur.Coordinate.Y)
                     {
+
                         StringBuilder minoPosition = new StringBuilder(output);
-                        minoPosition[output.Length - 2] = 'M';
+                        if (OnSameLine(theTheseus, theMinotaur) && theTheseus.Coordinate.X < theMinotaur.Coordinate.X)
+                        {
+                            minoPosition[output.Length - 3] = 'M';
+                        }
+                        else
+                        {
+                            minoPosition[output.Length - 2] = 'M';
+                        }
+
                         output = minoPosition.ToString();
                     }
                     if (x == theTheseus.Coordinate.X && y == theTheseus.Coordinate.Y)
                     {
                         StringBuilder thesPosition = new StringBuilder(output);
-                        thesPosition[output.Length - 2] = 'T';
+                        if (OnSameLine(theTheseus, theMinotaur) && theTheseus.Coordinate.X > theMinotaur.Coordinate.X)
+                        {
+                            thesPosition[output.Length - 3] = 'T';
+                        }
+                        else
+                        {
+                            thesPosition[output.Length - 2] = 'T';
+                        }
+
                         output = thesPosition.ToString();
                     }
                 }
@@ -155,7 +174,17 @@ namespace TheseusCompiled
             return output;
         }
 
-        internal static String[] LoadAscii(string ascii)
+        internal static bool OnSameLine(Theseus theTheseus, Minotaur theMinotaur)
+        {
+            if (theTheseus.Coordinate.Y == theMinotaur.Coordinate.Y)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
+        internal static String[] ConvertToStringArray(string ascii)
         {
             string[] mapArray = Regex.Split(ascii, "\n");
 
