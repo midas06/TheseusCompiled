@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TheseusCompiled
 {
-    class ConsoleView : IView
+    public class ConsoleView : IView
     {
         // GENERIC
         public void Start()
@@ -26,7 +26,7 @@ namespace TheseusCompiled
 
 
         // FILER
-        public int ChoosePool(string prompt = "")
+        /*public int ChoosePool(string prompt = "")
         {
             Console.WriteLine(prompt);
             return int.Parse(Console.ReadLine());
@@ -50,7 +50,7 @@ namespace TheseusCompiled
             Console.WriteLine("set Y");
             point.Y = int.Parse(Console.ReadLine());
             return point;
-        }
+        }*/
 
 
     }

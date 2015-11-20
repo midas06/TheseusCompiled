@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace TheseusCompiled
 {
-    static class MapCreator
+    public static class MapCreator
     {
         internal static Tile[,] CreateMap(int newWidth, int newHeight)
         {

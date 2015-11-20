@@ -8,14 +8,39 @@ using System.Windows.Forms;
 
 namespace TheseusCompiled
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
+            /*Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameForm());
+            Application.Run(new Form_Splash());*/
             //new Controller(new ConsoleView(), new Game(), new FileHandler(), new LevelBuilder()).Init();
+
+            FileHandler filer = new FileHandler();
+            Game theGame = new Game();
+            filer.Init();
+            filer.SetMap(0, "Map 1.");
+
+            theGame.SetFiler(filer);
+            theGame.SetMap();
+
+            foreach (Tile tile in theGame.GetMap())
+            {
+                Console.WriteLine(tile.Coordinate);
+            }
+            
+
+            Tile theTile = theGame.GetMap()[3, 2];
+            Console.WriteLine(theTile.Coordinate);
+            Console.WriteLine(theGame.GetMap().GetLength(0));
+            Console.WriteLine(theTile.IsOuter(Direction.Left));
+
+            int i = 105;
+
+            Console.WriteLine(i / 50);
+
+            Console.ReadKey();
 
 
 

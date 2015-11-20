@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TheseusCompiled
 {
-    class Character : Thing
+    public class Character : Thing
     {
         public Character(int x, int y) : base(x, y)
         {
@@ -62,7 +62,7 @@ namespace TheseusCompiled
             return false;
         }
         
-        internal bool Move(Point direction)
+        public bool Move(Point direction)
         {
             if (!IsBlocked(direction))
             {

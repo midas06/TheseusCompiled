@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace TheseusCompiled
 {
-    class Bridger
+    public class Bridger
     {
         //Tile[,] theMap;
         AMap theMap;
@@ -19,7 +19,7 @@ namespace TheseusCompiled
 
 
 
-        public void Init(AMap newMap)
+        protected void Init(AMap newMap)
         {
             /***
              * Initialise map variables - width & height
@@ -31,11 +31,7 @@ namespace TheseusCompiled
 
             length = mapArray[0].Length;
 
-            //Console.WriteLine("the longest line is {0} characters", longest);
             x = (length - 1) / 4;
-
-            //Console.WriteLine("# of line breaks = {0}", Regex.Matches(ascii, "\n").Count);
-            //y = Regex.Matches(ascii, "\n").Count / 2;
             y = (mapArray.Length - 1) / 2;
 
             Console.WriteLine("x = {0}, y = {1}", x, y);
@@ -44,7 +40,7 @@ namespace TheseusCompiled
 
         }
 
-        public void ConvertToObjects(int startingPoint)
+        protected void ConvertToObjects(int startingPoint)
         {
             Tile theTile;
 
@@ -96,7 +92,7 @@ namespace TheseusCompiled
         }
 
 
-        public void ObjectifyMap()
+        protected void ObjectifyMap()
         {
             for (int row = 0; row < y; row++)
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheseusCompiled
 {
-    class Compressor
+    public class Compressor
     {
         string[] theMap, compressedMap;
         string theseus, minotaur, exit;
@@ -17,7 +17,7 @@ namespace TheseusCompiled
             theMap = newMap;
         }
 
-        public void FindSpecialCharacters()
+        protected void FindSpecialCharacters()
         {
             int i = 0, j = 0, length = theMap[i].Length;
             string str;
@@ -54,7 +54,7 @@ namespace TheseusCompiled
             }*/
         }
 
-        public void CompressLevel1()
+        protected void CompressLevel1()
         {
             compressedMap = new string[theMap.Length];
             string theString;
@@ -119,7 +119,7 @@ namespace TheseusCompiled
             }*/
         }
 
-        public string CompressLevel2(string aString)
+        protected string CompressLevel2(string aString)
         {
             string output = "";
             int count = 1;
@@ -161,7 +161,7 @@ namespace TheseusCompiled
             return output;
         }
 
-        public void ShrinkLevel2()
+        protected void ShrinkLevel2()
         {
             int i = 0;
             while (i < compressedMap.Length)
@@ -174,7 +174,7 @@ namespace TheseusCompiled
 
 
 
-        public void SetTheResult()
+        protected void SetTheResult()
         {
             string tmx = "";
             string compped = "";

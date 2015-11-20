@@ -8,7 +8,7 @@ using System.Drawing;
 namespace TheseusCompiled
 {
     [Flags]
-    enum TheWalls
+    public enum TheWalls
     {
         None = 0x0,
         North = 0x1,
@@ -18,13 +18,13 @@ namespace TheseusCompiled
         End = 0x10
     }
 
-    internal struct Direction
+    public struct Direction
     {
-        internal static Point Up = new Point(0, -1);
-        internal static Point Down = new Point(0, 1);
-        internal static Point Right = new Point(1, 0);
-        internal static Point Left = new Point(-1, 0);
-        internal static Point Pass = new Point(0, 0);
+        public static Point Up = new Point(0, -1);
+        public static Point Down = new Point(0, 1);
+        public static Point Right = new Point(1, 0);
+        public static Point Left = new Point(-1, 0);
+        public static Point Pass = new Point(0, 0);
 
         public static bool operator ==(Direction c1, Point c2)
         {

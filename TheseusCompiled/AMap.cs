@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheseusCompiled
 {
-    class AMap
+    public class AMap
     {
         public string Name { get; set; }
         public string[] Map { get; set; }

@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheseusCompiled;
 
-namespace TheseusCompiled
+namespace TheseusForms
 {
-    public partial class GameForm : Form
+    public partial class Form1 : Form
     {
-        public GameForm()
+        public Form1()
         {
             InitializeComponent();
         }

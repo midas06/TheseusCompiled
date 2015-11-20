@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheseusCompiled
 {
-    class Minotaur : Character
+    public class Minotaur : Character
     {
         public Minotaur(int x, int y) : base(x, y)
         {
@@ -54,7 +54,7 @@ namespace TheseusCompiled
             }
         }
 
-        internal void Hunt()
+        public void Hunt()
         {
             Theseus theseus = myGame.GetTheseus();
             for (int i = 0; i < 2; i++)

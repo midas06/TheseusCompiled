@@ -7,7 +7,7 @@ using System.IO;
 
 namespace TheseusCompiled
 {
-    class Saver
+    public class Saver
     {
         String filename, mapName; //, filePath;
         string[] theMap;

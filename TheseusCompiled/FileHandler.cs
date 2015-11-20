@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TheseusCompiled
 {
-    class FileHandler
+    public class FileHandler
     {
         Saver saver;
         Loader loader;
@@ -198,6 +199,20 @@ namespace TheseusCompiled
             }
             return output;
         }
+
+        public string[] GetMapListArray(int theList)
+        {
+            string[] outputList;
+            string output = "";
+            foreach (AMap map in allMaps[theList])
+            {
+                output += map.Name + "\n";
+            }
+            output = output.Remove(output.Length - 1);
+            outputList = Regex.Split(output, "\n");
+            return outputList;
+        }
+
 
         public void SetMap(int theList, string mapName)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheseusCompiled
 {
-    class Controller
+    public class Controller
     {
         IView view;
         Game game;
@@ -25,31 +25,10 @@ namespace TheseusCompiled
             game.Init(view, filer);
         }
 
-        /*public void GameOver()
-        {
-            view.Display("Press 'R' to restart, \npress 'N' to go to the next level, \npress 'L' to select a level, \npress 'X' to quit");
-            ConsoleKeyInfo theKey = Console.ReadKey();
-            if (theKey.Key == ConsoleKey.R)
-            {
-                model.Restart();
-            }
-            if (theKey.Key == ConsoleKey.N)
-            {
-                model.NextMap();
-            }
-            if (theKey.Key == ConsoleKey.L)
-            {
-                Init();
-            }
-            if (theKey.Key == ConsoleKey.X)
-            {
-                // new stop method in controller
-                System.Environment.Exit(-1);
-            }
-        }*/
+        
 
 
-        public void SetMapPool(int thePool)
+       /* public void SetMapPool(int thePool)
         {
             mapPool = thePool;
         }
@@ -151,19 +130,10 @@ namespace TheseusCompiled
             view.Display("Please choose a map");
             filer.SetMap(mapPool, Console.ReadLine());
             game.SetMap();
-            /* while (!model.SetMap(view.SetLevel("Please choose a map")))
-             {
-                 view.Start();
-                 view.Display("This map is not valid, please choose another");
-             }*/
+  
             while (!game.Run())
             {
-                /*while (model.GetTheseus().IsFinished() && model.GetLevel() < model.GetTotalMaps() || model.GetMinotaur().HasEaten())
-                {
-                    //GameOver();
-                }
-                break;
-            */
+               
             }
             view.Display("Congratulations, you finished Theseus and the Minotaur!\nCredits:\nEverything: Harrison\n\nPress any key to exit");
 
@@ -180,12 +150,44 @@ namespace TheseusCompiled
             view.Display("Please choose a map");
             filer.SetMap(mapPool, Console.ReadLine());
             game.SetMap();
-            /* while (!model.SetMap(view.SetLevel("Please choose a map")))
-             {
-                 view.Start();
-                 view.Display("This map is not valid, please choose another");
-             }*/
+           
             while (!game.Run())
+            {
+             
+            }
+            view.Display("Congratulations, you finished Theseus and the Minotaur!\nCredits:\nEverything: Harrison\n\nPress any key to exit");
+
+            Console.ReadKey();
+        }*/
+    }
+}
+
+
+/*public void GameOver()
+        {
+            view.Display("Press 'R' to restart, \npress 'N' to go to the next level, \npress 'L' to select a level, \npress 'X' to quit");
+            ConsoleKeyInfo theKey = Console.ReadKey();
+            if (theKey.Key == ConsoleKey.R)
+            {
+                model.Restart();
+            }
+            if (theKey.Key == ConsoleKey.N)
+            {
+                model.NextMap();
+            }
+            if (theKey.Key == ConsoleKey.L)
+            {
+                Init();
+            }
+            if (theKey.Key == ConsoleKey.X)
+            {
+                // new stop method in controller
+                System.Environment.Exit(-1);
+            }
+        }*/
+
+
+ /*while (!game.Run())
             {
                 /*while (model.GetTheseus().IsFinished() && model.GetLevel() < model.GetTotalMaps() || model.GetMinotaur().HasEaten())
                 {
@@ -193,10 +195,18 @@ namespace TheseusCompiled
                 }
                 break;
             */
-            }
-            view.Display("Congratulations, you finished Theseus and the Minotaur!\nCredits:\nEverything: Harrison\n\nPress any key to exit");
 
-            Console.ReadKey();
-        }
-    }
-}
+ /*game.SetMap();
+            /* while (!model.SetMap(view.SetLevel("Please choose a map")))
+             {
+                 view.Start();
+                 view.Display("This map is not valid, please choose another");
+             }*/
+           /* while (!game.Run())
+            {
+                /*while (model.GetTheseus().IsFinished() && model.GetLevel() < model.GetTotalMaps() || model.GetMinotaur().HasEaten())
+                {
+                    //GameOver();
+                }
+                break;
+            */

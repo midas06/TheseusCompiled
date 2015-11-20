@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TheseusCompiled
 {
-    class Theseus : Character
+    public class Theseus : Character
     {
         public Theseus(int x, int y) : base(x, y)
         {
 
         }
-        internal Boolean IsFinished()
+        public Boolean IsFinished()
         {
             if (myGame.GetMap()[Coordinate.X, Coordinate.Y].MyWalls.HasFlag(TheWalls.End))
             {

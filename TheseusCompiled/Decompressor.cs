@@ -7,18 +7,18 @@ using System.Text.RegularExpressions;
 
 namespace TheseusCompiled
 {
-    class Decompressor
+    public class Decompressor
     {
         string compressed;
         string[] separatedArray, compressedMap, theMap;
         int[] theseus, minotaur, exit;
 
-        public void SetCompressed(string newString)
+        protected void SetCompressed(string newString)
         {
             compressed = newString;
         }
 
-        public void SeparateToArrays()
+        protected void SeparateToArrays()
         {
             string[] anArray, dummy;
             separatedArray = compressed.Split(',');
@@ -36,7 +36,7 @@ namespace TheseusCompiled
             exit = Array.ConvertAll(dummy, int.Parse);
         }
 
-        public string UndoLevel2(string aString)
+        protected string UndoLevel2(string aString)
         {
             string decomp = "";
             while (aString.Length > 1)
@@ -63,7 +63,7 @@ namespace TheseusCompiled
             return decomp;
         }
 
-        public void DecompressLevel2()
+        protected void DecompressLevel2()
         {
             theMap = new string[compressedMap.Length];
 
@@ -74,7 +74,7 @@ namespace TheseusCompiled
 
         }
 
-        public void DecompressLevel1()
+        protected void DecompressLevel1()
         {
             theMap = new string[compressedMap.Length];
             string theString;
@@ -134,7 +134,7 @@ namespace TheseusCompiled
              }*/
         }
 
-        public void SetCharacters()
+        protected void SetCharacters()
         {
             int x, y;
             StringBuilder theSB;

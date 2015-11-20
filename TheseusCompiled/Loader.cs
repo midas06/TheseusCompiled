@@ -12,7 +12,7 @@ namespace TheseusCompiled
 
 
 
-    class Loader
+    public class Loader
     {
         String filePath, fileContents;
         //String[] theMap;
@@ -38,10 +38,6 @@ namespace TheseusCompiled
             // reminder - need to remove string -> strArray code from Filer2
             string[] theMap = newMap.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
-            /*foreach (string str in theMap)
-            {
-                Console.WriteLine(str);
-            }*/
             return theMap;
         }
 
@@ -53,7 +49,7 @@ namespace TheseusCompiled
             ExtractFileContents();
         }
 
-        public List<String[]> ParseMap2()//string allMaps)
+        public List<String[]> ParseMap2()
         {
             string[] newMap, temp;
             List<string[]> tempMapArray = new List<string[]> { };
@@ -67,11 +63,6 @@ namespace TheseusCompiled
                 tempMapArray.Add(newMap);
             }
 
-
-            /*foreach (string[] str in tempMapArray)
-            {
-                Console.WriteLine("name: {0}, compressed map: {1}", str[0], str[1]);
-            }*/
 
 
 
@@ -93,29 +84,9 @@ namespace TheseusCompiled
             }
 
 
-            /*foreach (string str in temp)
-            {
-                Console.WriteLine("new map");
-                Console.WriteLine(str);
-            }*/
-
-
-
-            //return newMap;
         }
 
-        public void Test()
-        {
-            foreach (var map in originalMaps)
-            {
-                Console.WriteLine("mapname: {0}", map.Name);
-                foreach (string str in map.Map)
-                {
-                    Console.WriteLine(str);
-                }
-
-            }
-        }
+    
 
         public string[] GetOriginalMap(List<AMap> theList, string mapName)
         {
@@ -124,12 +95,6 @@ namespace TheseusCompiled
                  where map.Name == mapName
                  select map).Single();
 
-            /*Console.WriteLine("mapname: {0}", m.Name);
-            foreach (string s in m.Map)
-            {
-                Console.WriteLine(s);
-            }*/
-
             return m.Map;
         }
 
@@ -137,13 +102,6 @@ namespace TheseusCompiled
         {
             return originalMaps;
         }
-
-
-
-        /*public string[] GetMap()
-        {
-            return theMap;
-        }*/
 
 
     }

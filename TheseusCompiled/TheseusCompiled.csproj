@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{18F13FE5-F66F-4566-9407-FDFB4546FB20}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TheseusCompiled</RootNamespace>
     <AssemblyName>TheseusCompiled</AssemblyName>
@@ -55,12 +55,6 @@
     <Compile Include="Decompressor.cs" />
     <Compile Include="FileHandler.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="GameForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameForm.Designer.cs">
-      <DependentUpon>GameForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="IView.cs" />
     <Compile Include="LevelBuilder.cs" />
     <Compile Include="Loader.cs" />

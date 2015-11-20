@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TheseusCompiled
 {
-    class Thing
+    public class Thing
     {
         public Point Coordinate;
         public Game myGame;

@@ -7,17 +7,17 @@ using System.Drawing;
 
 namespace TheseusCompiled
 {
-    interface IView
+    public interface IView
     {
         // generic
         void Start();
         void Stop();
         void Display<T>(T message);
         // filer
-        int ChoosePool(string prompt);
+        //int ChoosePool(string prompt);
         // game
-        string SetLevel(string prompt);
+        //string SetLevel(string prompt);
         // builder
-        Point SetDimensions(string prompt);
+        //Point SetDimensions(string prompt);
     }
 }

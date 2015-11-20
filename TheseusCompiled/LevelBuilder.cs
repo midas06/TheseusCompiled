@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TheseusCompiled
 {
-    class LevelBuilder
+    public class LevelBuilder
     {
      int horizontal, vertical;
         Tile[,] theMap;
@@ -81,12 +81,17 @@ namespace TheseusCompiled
             int x = theTile.Coordinate.X;
             int y = theTile.Coordinate.Y;
 
-            if ((Object)theseus == null)
+            if (minotaur == null || minotaur != null && minotaur.Coordinate != theTile.Coordinate)
             {
-                theseus = new Theseus(x, y);
+                if ((Object)theseus == null)
+                {
+                    theseus = new Theseus(x, y);
+                }
+                else
+                {
+                    theseus.Coordinate = theTile.Coordinate;
+                }
             }
-
-            // catch: minotaur/exit on same tile
         }
 
         public void SetMinotaur()
@@ -94,10 +99,18 @@ namespace TheseusCompiled
             int x = theTile.Coordinate.X;
             int y = theTile.Coordinate.Y;
 
-            if ((Object)minotaur == null)
+            if (theseus == null || theseus != null && theseus.Coordinate != theTile.Coordinate)
             {
-                minotaur = new Minotaur(x, y);
+                if ((Object)minotaur == null)
+                {
+                    minotaur = new Minotaur(x, y);
+                }
+                else
+                {
+                    minotaur.Coordinate = theTile.Coordinate;
+                }
             }
+            
 
             // catch: theseus on same tile
         }
@@ -210,19 +223,20 @@ namespace TheseusCompiled
 
         public void Exit()
         {
-            if (theTile.MyWalls.HasFlag(TheWalls.End))
+            if (ExitExists())
             {
-                theTile.MyWalls &= ~TheWalls.End;
-            }
-            else
-            {
-                if (!HasExit())
+                foreach (Tile t in theMap)
                 {
-                    theTile.MyWalls |= TheWalls.End;
+                    if (t.MyWalls.HasFlag(TheWalls.End))
+                    {
+                        t.MyWalls &= ~TheWalls.End;
+                    }
                 }
 
             }
+            theTile.MyWalls |= TheWalls.End;
         }
+            
 
         public string[] Export()
         {
@@ -241,25 +255,18 @@ namespace TheseusCompiled
 
         protected bool ExitExists()
         {
-            bool exists = false;
             foreach (Tile tile in theMap)
             {
                 if (tile.MyWalls.HasFlag(TheWalls.End))
                 {
-                    exists = true;
+                    return true;
                 }
             }
-            return exists;
+            return false;
         }
 
 
-
-
-
-
-
-
-        public Tile[,] GetMap()
+        public Tile[,] GetTiles()
         {
             return theMap;
         }
@@ -271,33 +278,23 @@ namespace TheseusCompiled
         {
             return minotaur;
         }
-
-   
-
-
-
-        public void Test()
+        public Tile GetTheTile()
         {
-            foreach (Tile tile in theMap)
+            return theTile;
+        }
+        public Tile GetExit()
+        {
+            foreach (Tile t in theMap)
             {
-                Console.WriteLine("{0}, walls: {1}", tile.Coordinate, tile.MyWalls);
+                if (t.MyWalls.HasFlag(TheWalls.End))
+                {
+                    return t;
+                }
             }
-            if (HasExit())
-            {
-                Console.WriteLine("Has end");
-            }
-            else
-            {
-                Console.WriteLine("no exit");
-            }
-            if ((Object)theseus != null)
-            {
-                Console.WriteLine("Theseus: {0}", theseus.Coordinate);
-            }
-
+            return null;
         }
 
-
+        
 
 
     }
