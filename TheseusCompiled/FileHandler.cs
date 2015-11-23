@@ -19,12 +19,14 @@ namespace TheseusCompiled
         List<AMap> originalMaps, userMaps;
         AMap theMap;
         string rootDirectory, userMapDirectory, originalMapsLocation;
+        bool overWriteMap;
 
         public void Init()
         {
             //SetRootDir(@"H:\2015\semester 2\PR 283 C#\Theseus\FilerTesting");
             //SetRootDir(@"C:\Users\Harry\Documents\2015\sem2\c#\FilerTesting");
-            SetRootDir(@"H:\2015\semester 2\PR 283 C#\Theseus\TheseusCompiled");
+            //SetRootDir(@"H:\2015\semester 2\PR 283 C#\Theseus\TheseusCompiled");
+            SetRootDir(@"H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test");
             allMaps = new List<AMap>[2];
             LoadOriginalMaps();
             LoadAllUserMaps();
@@ -153,6 +155,11 @@ namespace TheseusCompiled
             return false;
         }
 
+        public void ConfirmOverwrite(bool input)
+        {
+            overWriteMap = input;
+        }
+
 
         public bool NewUserMap(string mapName, string[] newMap)
         {
@@ -169,10 +176,15 @@ namespace TheseusCompiled
 
 
             // check to see if mapname is in use
+            
             if (MapNameUsed(mapName))
             {
-                Console.WriteLine("map name already exists");
-                return false;
+                if (overWriteMap == false)
+                {
+                    Console.WriteLine("map name already exists");
+                    return false;
+                }
+                
             }
             /*/ add map to user map list
             userMaps.Add(mapName);
@@ -236,6 +248,186 @@ namespace TheseusCompiled
         {
             return theMap;
         }
+
+        public bool GetNextMap()
+        {
+            string theString = theMap.Name;
+            theString = theString.Remove(0, 4);
+            int i = int.Parse(theString);
+
+            if (i < 10)
+            {
+                i = i + 1;
+                theString = "Map " + i.ToString();
+                SetMap(0, theString);
+                return true;
+            }
+            return false;
+        }
+
+
+      
+
+        public string LoadTextFile(string theFile)
+        {
+            if (loader == null)
+            {
+                loader = new Loader();
+            }
+
+            loader.SetFilePath(theFile);
+            loader.ExtractFileContents();
+            return loader.GetFileContents();
+        }
+
+        public bool TestUncompressed(string theFile)
+        {
+            string str = LoadTextFile(theFile);
+            string[] strArray;
+            if (loader == null)
+            {
+                loader = new Loader();
+            }
+
+            strArray = loader.ToStringArray(str);
+            AMap newMap = new AMap();
+
+            if (bridger == null)
+            {
+                bridger = new Bridger();
+            }
+            bridger.Init(newMap);
+
+            if (!bridger.IsValid())
+            {
+                return false;
+            }
+
+            try
+            {
+                bridger.Convert(newMap);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool TestCompressedL1(string theFile)
+        {
+            string newFile = LoadTextFile(theFile);
+            string[] strArray;
+            if (decompressor == null)
+            {
+                decompressor = new Decompressor();
+            }
+            decompressor.SetCompressed(newFile);
+
+
+            try
+            {
+                decompressor.SeparateToArrays();
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return false;
+            }
+            try
+            {
+                decompressor.DecompressLevel1();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            try
+            {
+                decompressor.SetCharacters();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            strArray = decompressor.GetLevel1Result();
+
+            AMap newMap = new AMap();
+
+            if (bridger == null)
+            {
+                bridger = new Bridger();
+            }
+            bridger.Init(newMap);
+
+            if (!bridger.IsValid())
+            {
+                return false;
+            }
+
+            try
+            {
+                bridger.Convert(newMap);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return false;
+            }
+            return true;
+
+        }
+
+        public bool TestCompressedLevel2(string theFile)
+        {
+            string newFile = LoadTextFile(theFile);
+            string[] strArray;
+            if (decompressor == null)
+            {
+                decompressor = new Decompressor();
+            }
+
+            try
+            {
+                strArray = decompressor.GetTheMap(newFile);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            AMap newMap = new AMap();
+
+            if (bridger == null)
+            {
+                bridger = new Bridger();
+            }
+
+            bridger.Init(newMap);
+
+            if (!bridger.IsValid())
+            {
+                return false;
+            }
+
+            try
+            {
+                bridger.Convert(newMap);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return false;
+            }
+            return true;
+
+
+
+        }
+
+
+
+
+
+
+      
+        
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TheseusFormed
 {
-    partial class FrmFilerLoad
+    partial class FrmFilerLoadGame
     {
         /// <summary>
         /// Required designer variable.
@@ -81,17 +81,20 @@
             this.btnLoadMap.UseVisualStyleBackColor = true;
             this.btnLoadMap.Click += new System.EventHandler(this.btnLoadUser_Click);
             // 
-            // FrmFilerLoad
+            // FrmFilerLoadGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 462);
+            this.ControlBox = false;
             this.Controls.Add(this.btnLoadMap);
             this.Controls.Add(this.lblUserMaps);
             this.Controls.Add(this.lblOGMaps);
             this.Controls.Add(this.lbxUserCreated);
             this.Controls.Add(this.lbxOriginalMaps);
-            this.Name = "FrmFilerLoad";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Name = "FrmFilerLoadGame";
             this.Text = "FrmFilerLoad";
             this.ResumeLayout(false);
             this.PerformLayout();

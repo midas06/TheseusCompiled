@@ -72,7 +72,7 @@ namespace TheseusCompiled
         }
 
 
-        internal Boolean HasEaten()
+        public Boolean HasEaten()
         {
             Theseus theseus = myGame.GetTheseus();
             if (Coordinate == theseus.Coordinate)

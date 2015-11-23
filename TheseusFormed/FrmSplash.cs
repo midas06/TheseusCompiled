@@ -12,30 +12,31 @@ namespace TheseusFormed
 {
     public partial class FrmSplash : Form
     {
-        FrmFilerLoad frmFiler;
-        FrmDesignerMenu frmDesigner;
+        FrmContainer parentForm;
+
 
         public FrmSplash()
         {
             InitializeComponent();
         }
 
+        public void SetParentForm(FrmContainer theParent)
+        {
+            this.parentForm = theParent;
+        }
+
         private void btnLoadFiler_Click(object sender, EventArgs e)
         {
-            if (frmFiler == null)
-            {
-                frmFiler = new FrmFilerLoad();
-            }
-            frmFiler.Show();
+            parentForm.OpenMapFiler();
+            parentForm.SetPreviousForm(this);
+            this.Hide();
         }
 
         private void btnLoadBuilder_Click(object sender, EventArgs e)
         {
-            if (frmDesigner == null)
-            {
-                frmDesigner = new FrmDesignerMenu();
-            }
-            frmDesigner.Show();
+            parentForm.OpenBuilderMenu();
+            parentForm.SetPreviousForm(this);
+            this.Hide();
         }
     }
 }

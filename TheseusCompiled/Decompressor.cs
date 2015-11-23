@@ -13,12 +13,12 @@ namespace TheseusCompiled
         string[] separatedArray, compressedMap, theMap;
         int[] theseus, minotaur, exit;
 
-        protected void SetCompressed(string newString)
+        internal void SetCompressed(string newString)
         {
             compressed = newString;
         }
 
-        protected void SeparateToArrays()
+        internal void SeparateToArrays()
         {
             string[] anArray, dummy;
             separatedArray = compressed.Split(',');
@@ -36,7 +36,7 @@ namespace TheseusCompiled
             exit = Array.ConvertAll(dummy, int.Parse);
         }
 
-        protected string UndoLevel2(string aString)
+        internal string UndoLevel2(string aString)
         {
             string decomp = "";
             while (aString.Length > 1)
@@ -63,7 +63,7 @@ namespace TheseusCompiled
             return decomp;
         }
 
-        protected void DecompressLevel2()
+        internal void DecompressLevel2()
         {
             theMap = new string[compressedMap.Length];
 
@@ -74,7 +74,7 @@ namespace TheseusCompiled
 
         }
 
-        protected void DecompressLevel1()
+        internal void DecompressLevel1()
         {
             theMap = new string[compressedMap.Length];
             string theString;
@@ -134,7 +134,7 @@ namespace TheseusCompiled
              }*/
         }
 
-        protected void SetCharacters()
+        internal void SetCharacters()
         {
             int x, y;
             StringBuilder theSB;
@@ -177,6 +177,11 @@ namespace TheseusCompiled
             DecompressLevel1();
             SetCharacters();
 
+            return theMap;
+        }
+
+        public string[] GetLevel1Result()
+        {
             return theMap;
         }
     }

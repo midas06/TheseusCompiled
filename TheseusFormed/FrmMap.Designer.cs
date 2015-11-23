@@ -34,12 +34,10 @@
             // 
             // pnlBackground
             // 
-            this.pnlBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlBackground.Location = new System.Drawing.Point(0, 51);
             this.pnlBackground.Name = "pnlBackground";
             this.pnlBackground.Size = new System.Drawing.Size(500, 500);
             this.pnlBackground.TabIndex = 1;
-            this.pnlBackground.Click += new System.EventHandler(this.pnlBackground_Click);
             this.pnlBackground.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBackground_Paint);
             // 
             // lblTitle

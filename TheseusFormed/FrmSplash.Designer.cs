@@ -57,8 +57,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 462);
+            this.ControlBox = false;
             this.Controls.Add(this.btnLoadFiler);
             this.Controls.Add(this.btnLoadBuilder);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmSplash";
             this.Text = "Theseus and the Minotaur";
             this.ResumeLayout(false);

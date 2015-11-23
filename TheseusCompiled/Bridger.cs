@@ -17,9 +17,25 @@ namespace TheseusCompiled
         int x, y;
 
 
+        public bool IsValid()
+        {
+            int length = mapArray[0].Length;
+
+            foreach (string str in mapArray)
+            {
+                if (str.Length != length)
+                {
+                    return false;
+                }
+            }
+            return true;
+
+        }
 
 
-        protected void Init(AMap newMap)
+
+
+        internal void Init(AMap newMap)
         {
             /***
              * Initialise map variables - width & height

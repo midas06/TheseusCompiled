@@ -12,17 +12,24 @@ namespace TheseusFormed
 {
     public partial class FrmSetDimensions : Form
     {
+        FrmContainer parentForm;
         public FrmSetDimensions()
         {
             InitializeComponent();
         }
 
+        public void SetParentForm(FrmContainer newForm)
+        {
+            parentForm = newForm;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            FrmDesigner frm = new FrmDesigner();
             Point p = new Point(Decimal.ToInt32(numX.Value), Decimal.ToInt32(numY.Value));
-            frm.Init(p);
-            frm.Show();
+
+            parentForm.OpenNewBuilder(p);
+            parentForm.SetPreviousForm(this);
+            this.Hide();
         }
 
         

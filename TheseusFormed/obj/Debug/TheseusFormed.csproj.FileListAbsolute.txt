@@ -15,7 +15,6 @@ H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\bin\Debu
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\bin\Debug\TheseusCompiled.exe
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\bin\Debug\TheseusCompiled.pdb
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.csprojResolveAssemblyReference.cache
-H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.FrmFilerLoad.resources
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.FrmMap.resources
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.FrmSplash.resources
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.Properties.Resources.resources
@@ -25,3 +24,6 @@ H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debu
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.FrmDesignerMenu.resources
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.FrmDesigner.resources
 H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.FrmSetDimensions.resources
+H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.FrmFilerLoadDesigner.resources
+H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.FrmFilerLoadGame.resources
+H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\TheseusFormed\obj\Debug\TheseusFormed.FrmContainer.resources

@@ -12,24 +12,30 @@ namespace TheseusFormed
 {
     public partial class FrmDesignerMenu : Form
     {
-        FrmSetDimensions designer;
+        FrmContainer parentForm;
         public FrmDesignerMenu()
         {
             InitializeComponent();
         }
 
+        public void SetParentForm(FrmContainer newForm)
+        {
+            parentForm = newForm;
+        }
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
+            parentForm.OpenMapListBuilder();
+            parentForm.SetPreviousForm(this);
+            this.Hide();
         }
 
         private void btnNewMap_Click(object sender, EventArgs e)
         {
-            if (designer == null)
-            {
-                designer = new FrmSetDimensions();
-            }
-            designer.Show();
+            parentForm.OpenDimensions();
+            parentForm.SetPreviousForm(this);
+            this.Hide();
+            
         }
 
      

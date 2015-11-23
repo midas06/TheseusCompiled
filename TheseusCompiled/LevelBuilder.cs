@@ -9,28 +9,44 @@ namespace TheseusCompiled
 {
     public class LevelBuilder
     {
-     int horizontal, vertical;
-        Tile[,] theMap;
+        int horizontal, vertical;
+        AMap theMap;
+        //Tile[,] theMap;
         Tile theTile;
         Theseus theseus;
         Minotaur minotaur;
+        string mapName;
 
         public void Init(Point newDimensions) //(int newHorizontal, int newVertical)
         {
+            theMap = new AMap();
             horizontal = (newDimensions.X) - 1;
             vertical = (newDimensions.Y) - 1;
 
-            theMap = MapCreator.CreateMap(newDimensions.X, newDimensions.Y);
+            theMap.Tiles = MapCreator.CreateMap(newDimensions.X, newDimensions.Y);
+            
+
         }
+
+        public void LoadUserMap(AMap userMap)
+        {
+            theMap = userMap;
+            theseus = userMap.TheTheseus;
+            minotaur = userMap.TheMinotaur;
+            mapName = userMap.Name;
+            horizontal = userMap.Tiles.GetLength(0) - 1;
+            vertical = userMap.Tiles.GetLength(1) - 1;
+        }
+
 
         public void SelectTile(Point newTile) //int theX, int theY)
         {
-            theTile = theMap[newTile.X, newTile.Y];
+            theTile = theMap.Tiles[newTile.X, newTile.Y];
         }
 
         protected bool HasExit()
         {
-            foreach (Tile tile in theMap)
+            foreach (Tile tile in theMap.Tiles)
             {
                 if (tile.MyWalls.HasFlag(TheWalls.End))
                 {
@@ -81,15 +97,15 @@ namespace TheseusCompiled
             int x = theTile.Coordinate.X;
             int y = theTile.Coordinate.Y;
 
-            if (minotaur == null || minotaur != null && minotaur.Coordinate != theTile.Coordinate)
+            if (theMap.TheMinotaur == null || theMap.TheMinotaur != null && theMap.TheMinotaur.Coordinate != theTile.Coordinate)
             {
-                if ((Object)theseus == null)
+                if (theMap.TheTheseus == null)
                 {
-                    theseus = new Theseus(x, y);
+                    theMap.TheTheseus = new Theseus(x, y);
                 }
                 else
                 {
-                    theseus.Coordinate = theTile.Coordinate;
+                    theMap.TheTheseus.Coordinate = theTile.Coordinate;
                 }
             }
         }
@@ -99,15 +115,15 @@ namespace TheseusCompiled
             int x = theTile.Coordinate.X;
             int y = theTile.Coordinate.Y;
 
-            if (theseus == null || theseus != null && theseus.Coordinate != theTile.Coordinate)
+            if (theMap.TheTheseus == null || theMap.TheTheseus != null && theMap.TheTheseus.Coordinate != theTile.Coordinate)
             {
-                if ((Object)minotaur == null)
+                if (theMap.TheMinotaur == null)
                 {
-                    minotaur = new Minotaur(x, y);
+                    theMap.TheMinotaur = new Minotaur(x, y);
                 }
                 else
                 {
-                    minotaur.Coordinate = theTile.Coordinate;
+                    theMap.TheMinotaur.Coordinate = theTile.Coordinate;
                 }
             }
             
@@ -126,7 +142,7 @@ namespace TheseusCompiled
 
                 if (!IsNorthmost())
                 {
-                    adjTile = theMap[theTile.Coordinate.X, theTile.Coordinate.Y - 1];
+                    adjTile = theMap.Tiles[theTile.Coordinate.X, theTile.Coordinate.Y - 1];
                     adjTile.MyWalls &= ~TheWalls.South;
                 }
             }
@@ -136,7 +152,7 @@ namespace TheseusCompiled
 
                 if (!IsNorthmost())
                 {
-                    adjTile = theMap[theTile.Coordinate.X, theTile.Coordinate.Y - 1];
+                    adjTile = theMap.Tiles[theTile.Coordinate.X, theTile.Coordinate.Y - 1];
                     adjTile.MyWalls |= TheWalls.South;
                 }
             }
@@ -151,7 +167,7 @@ namespace TheseusCompiled
 
                 if (!IsSouthmost())
                 {
-                    adjTile = theMap[theTile.Coordinate.X, theTile.Coordinate.Y + 1];
+                    adjTile = theMap.Tiles[theTile.Coordinate.X, theTile.Coordinate.Y + 1];
                     adjTile.MyWalls &= ~TheWalls.North;
                 }
             }
@@ -161,7 +177,7 @@ namespace TheseusCompiled
 
                 if (!IsSouthmost())
                 {
-                    adjTile = theMap[theTile.Coordinate.X, theTile.Coordinate.Y + 1];
+                    adjTile = theMap.Tiles[theTile.Coordinate.X, theTile.Coordinate.Y + 1];
                     adjTile.MyWalls |= TheWalls.North;
                 }
             }
@@ -178,7 +194,7 @@ namespace TheseusCompiled
 
                 if (!IsEastmost())
                 {
-                    adjTile = theMap[theTile.Coordinate.X + 1, theTile.Coordinate.Y];
+                    adjTile = theMap.Tiles[theTile.Coordinate.X + 1, theTile.Coordinate.Y];
                     adjTile.MyWalls &= ~TheWalls.West;
                 }
             }
@@ -188,7 +204,7 @@ namespace TheseusCompiled
 
                 if (!IsEastmost())
                 {
-                    adjTile = theMap[theTile.Coordinate.X + 1, theTile.Coordinate.Y];
+                    adjTile = theMap.Tiles[theTile.Coordinate.X + 1, theTile.Coordinate.Y];
                     adjTile.MyWalls |= TheWalls.West;
                 }
             }
@@ -205,7 +221,7 @@ namespace TheseusCompiled
 
                 if (!IsWestmost())
                 {
-                    adjTile = theMap[theTile.Coordinate.X - 1, theTile.Coordinate.Y];
+                    adjTile = theMap.Tiles[theTile.Coordinate.X - 1, theTile.Coordinate.Y];
                     adjTile.MyWalls &= ~TheWalls.East;
                 }
             }
@@ -215,7 +231,7 @@ namespace TheseusCompiled
 
                 if (!IsWestmost())
                 {
-                    adjTile = theMap[theTile.Coordinate.X - 1, theTile.Coordinate.Y];
+                    adjTile = theMap.Tiles[theTile.Coordinate.X - 1, theTile.Coordinate.Y];
                     adjTile.MyWalls |= TheWalls.East;
                 }
             }
@@ -225,7 +241,7 @@ namespace TheseusCompiled
         {
             if (ExitExists())
             {
-                foreach (Tile t in theMap)
+                foreach (Tile t in theMap.Tiles)
                 {
                     if (t.MyWalls.HasFlag(TheWalls.End))
                     {
@@ -240,7 +256,7 @@ namespace TheseusCompiled
 
         public string[] Export()
         {
-            string theString = MapCreator.ObjectsToString(theMap, theseus, minotaur);
+            string theString = MapCreator.ObjectsToString(theMap.Tiles, theMap.TheTheseus, theMap.TheMinotaur);
             return MapCreator.ConvertToStringArray(theString);         
         }
                 
@@ -255,7 +271,7 @@ namespace TheseusCompiled
 
         protected bool ExitExists()
         {
-            foreach (Tile tile in theMap)
+            foreach (Tile tile in theMap.Tiles)
             {
                 if (tile.MyWalls.HasFlag(TheWalls.End))
                 {
@@ -268,23 +284,29 @@ namespace TheseusCompiled
 
         public Tile[,] GetTiles()
         {
-            return theMap;
+            return theMap.Tiles;
         }
         public Theseus GetTheseus()
         {
-            return theseus;
+            return theMap.TheTheseus;
         }
         public Minotaur GetMinotaur()
         {
-            return minotaur;
+            return theMap.TheMinotaur;
         }
         public Tile GetTheTile()
         {
             return theTile;
         }
+        public string GetTheName()
+        {
+            return mapName;
+        }
+
+
         public Tile GetExit()
         {
-            foreach (Tile t in theMap)
+            foreach (Tile t in theMap.Tiles)
             {
                 if (t.MyWalls.HasFlag(TheWalls.End))
                 {
@@ -294,8 +316,38 @@ namespace TheseusCompiled
             return null;
         }
 
-        
+        public string Test()
+        {
+            string test = "";
+            foreach (Tile t in theMap.Tiles)
+            {
+                test += t.Coordinate.ToString() + " " + t.MyWalls.ToString() + "\n";
+            }
+            if (theMap.TheTheseus != null)
+            {
+                test += "Theseus " + theMap.TheTheseus.Coordinate.ToString() + "\n";
+            }
+            if (theMap.TheMinotaur != null)
+            {
+                test += "Minotaur " + theMap.TheMinotaur.Coordinate.ToString() + "\n";
+            }
 
+
+            return test;
+        }
+
+        public void Clear()
+        {
+            int x, y;
+            x = theMap.Tiles.GetLength(0);
+            y = theMap.Tiles.GetLength(1);
+
+            theMap = new AMap();
+            theMap.Tiles = MapCreator.CreateMap(x, y);
+            theMap.TheTheseus = null;
+            theMap.TheMinotaur = null;
+        
+        }
 
     }
 }

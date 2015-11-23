@@ -46,6 +46,12 @@
   <ItemGroup>
     <Compile Include="FormController.cs" />
     <Compile Include="FormView.cs" />
+    <Compile Include="FrmContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmContainer.Designer.cs">
+      <DependentUpon>FrmContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDesigner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,11 +64,17 @@
     <Compile Include="FrmDesignerMenu.Designer.cs">
       <DependentUpon>FrmDesignerMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmFilerLoad.cs">
+    <Compile Include="FrmFilerLoadGame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmFilerLoad.Designer.cs">
-      <DependentUpon>FrmFilerLoad.cs</DependentUpon>
+    <Compile Include="FrmFilerLoadGame.Designer.cs">
+      <DependentUpon>FrmFilerLoadGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFilerLoadDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFilerLoadDesigner.Designer.cs">
+      <DependentUpon>FrmFilerLoadDesigner.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMap.cs">
       <SubType>Form</SubType>
@@ -82,16 +94,23 @@
     <Compile Include="FrmSplash.Designer.cs">
       <DependentUpon>FrmSplash.cs</DependentUpon>
     </Compile>
+    <Compile Include="Painter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmContainer.resx">
+      <DependentUpon>FrmContainer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDesigner.resx">
       <DependentUpon>FrmDesigner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDesignerMenu.resx">
       <DependentUpon>FrmDesignerMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmFilerLoad.resx">
-      <DependentUpon>FrmFilerLoad.cs</DependentUpon>
+    <EmbeddedResource Include="FrmFilerLoadDesigner.resx">
+      <DependentUpon>FrmFilerLoadDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFilerLoadGame.resx">
+      <DependentUpon>FrmFilerLoadGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMap.resx">
       <DependentUpon>FrmMap.cs</DependentUpon>

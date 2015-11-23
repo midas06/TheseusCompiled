@@ -66,7 +66,7 @@
             // 
             // numY
             // 
-            this.numY.Location = new System.Drawing.Point(75, 110);
+            this.numY.Location = new System.Drawing.Point(301, 54);
             this.numY.Minimum = new decimal(new int[] {
             1,
             0,
@@ -93,7 +93,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 114);
+            this.label2.Location = new System.Drawing.Point(238, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 4;
@@ -103,7 +103,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(222, 224);
+            this.ClientSize = new System.Drawing.Size(455, 229);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numY);

@@ -17,7 +17,7 @@ namespace TheseusCompiled
             theMap = newMap;
         }
 
-        protected void FindSpecialCharacters()
+        internal void FindSpecialCharacters()
         {
             int i = 0, j = 0, length = theMap[i].Length;
             string str;
@@ -54,7 +54,7 @@ namespace TheseusCompiled
             }*/
         }
 
-        protected void CompressLevel1()
+        internal void CompressLevel1()
         {
             compressedMap = new string[theMap.Length];
             string theString;
@@ -174,7 +174,7 @@ namespace TheseusCompiled
 
 
 
-        protected void SetTheResult()
+        internal void SetTheResult()
         {
             string tmx = "";
             string compped = "";
@@ -190,6 +190,11 @@ namespace TheseusCompiled
             compped = compped.TrimEnd('.');
             theResult = tmx + ',' + compped;
             //Console.WriteLine(theResult);
+        }
+
+        internal string GetLvl1()
+        {
+            return theResult;
         }
 
         public string GetResult()

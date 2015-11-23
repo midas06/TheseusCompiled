@@ -11,17 +11,21 @@ using TheseusCompiled;
 
 namespace TheseusFormed
 {
-    public partial class FrmFilerLoad : Form
+    public partial class FrmFilerLoadGame : Form
     {
         FileHandler filer;
         string theMap;
         int theList;
-        public FrmFilerLoad()
+        FrmContainer parentForm;
+        public FrmFilerLoadGame()
         {
             InitializeComponent();
             LoadLists();
         }
-
+        public void SetParentForm(FrmContainer theParent)
+        {
+            this.parentForm = theParent;
+        }
         public void LoadLists()
         {
             if (filer == null)
@@ -45,27 +49,22 @@ namespace TheseusFormed
         }
 
         private void btnLoadUser_Click(object sender, EventArgs e)
-        {
-            FrmMap mapForm;
+        {            
             if (lbxOriginalMaps.Text != "")
             {
                 theMap = lbxOriginalMaps.Text;
                 theList = 0;
-                //this.DialogResult = DialogResult.OK;
-                mapForm = new FrmMap();
-                mapForm.SetTestData(theList, theMap);
-                mapForm.Show();
-                //this.Dispose();
+                parentForm.OpenGameForm(theList, theMap);
+                parentForm.SetPreviousForm(this);
+                this.Hide();
             }
             if (lbxUserCreated.Text != "")
             {
                 theMap = lbxUserCreated.Text;
                 theList = 1;
-                //this.DialogResult = DialogResult.OK;
-                mapForm = new FrmMap();
-                mapForm.SetTestData(theList, theMap);
-                mapForm.Show();
-                //this.Dispose();
+                parentForm.OpenGameForm(theList, theMap);
+                parentForm.SetPreviousForm(this);
+                this.Hide();
             }
             if (lbxOriginalMaps.Text == "" && lbxUserCreated.Text == "")
             {

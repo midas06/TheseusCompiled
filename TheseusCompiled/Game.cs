@@ -50,9 +50,9 @@ namespace TheseusCompiled
             //SetTheseus(theFiler.GetTheseus());
             //SetMinotaur(theFiler.GetMinotaur());m,
             Run();
-        }
+        }*/
 
-        public void NextMap()
+        /*public void NextMap()
         {
             currentMap += 1;
             theMap = theFiler.GetMap(currentMap);
@@ -207,7 +207,7 @@ namespace TheseusCompiled
             return false;
         }
 
-        protected bool IsGameOver()
+        public bool IsGameOver()
         {
             if (theseus.IsFinished() || minotaur.HasEaten())
             {
@@ -226,6 +226,10 @@ namespace TheseusCompiled
             return theFiler.GetTotalMaps();
         }*/
 
+
+
+
+
         public void SetView(IView newView)
         {
             theView = newView;
@@ -234,40 +238,24 @@ namespace TheseusCompiled
         /* The go button */
         public bool Run(Keys theKeypress)
         {
+            Point direction = PlayersTurn(theKeypress);
             //theView.Start();
             //theView.Display("****" + currentMap.Name + " ****\n");
             //theView.Display(MapCreator.ObjectsToString(theMap, theseus, minotaur));
 
             if (!IsGameOver())
             {
-                Move(theKeypress);
-                if (!theseus.IsFinished())
+                if (!theseus.IsBlocked(direction))
                 {
-                    minotaur.Hunt();
+                    theseus.Move(direction);
+                    if (!theseus.IsFinished())
+                    {
+                        minotaur.Hunt();
+                    }
                 }
             }
-            
-            //while (IsGameOver() == false)
-           // {
-                //theView.Display("\nPress Up, Down, Left, Right to move; Press A to do nothing");
-                
-                
-                /*theView.Start();
-                theView.Display("**** LEVEL " + currentMap.ToString() + " ****\n");
-                theView.Display(MapCreator.ObjectsToString(theMap, theseus, minotaur));*/
-
-          //  }
-            /*if (IsGameOver() && theseus.IsFinished())
-            {
-                theView.Display("Congrats!");
-                return false;
-            }
-            if (IsGameOver() && minotaur.HasEaten())
-            {
-                theView.Display("You were eaten by the Minotaur :(\n");
-                theView.Display("Game over\n");
-                return false;
-            }*/
+           
+           
             return true;
         }
 

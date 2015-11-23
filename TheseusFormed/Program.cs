@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheseusCompiled;
 
 namespace TheseusFormed
 {
@@ -16,7 +17,12 @@ namespace TheseusFormed
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmSplash());
+            /*FrmMap theForm = new FrmMap();
+            FileHandler filer = new FileHandler();
+            filer.Init();
+            filer.SetMap(0, "Map 2.");
+            theForm.Init(0, "Map 2.");*/
+            Application.Run(new FrmContainer());
         }
     }
 }

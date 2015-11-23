@@ -18,7 +18,8 @@ namespace TheseusCompiled
             //new Controller(new ConsoleView(), new Game(), new FileHandler(), new LevelBuilder()).Init();
 
             FileHandler filer = new FileHandler();
-            Game theGame = new Game();
+            LevelBuilder builder = new LevelBuilder();
+            /*Game theGame = new Game();
             filer.Init();
             filer.SetMap(0, "Map 1.");
 
@@ -38,7 +39,88 @@ namespace TheseusCompiled
 
             int i = 105;
 
-            Console.WriteLine(i / 50);
+            Console.WriteLine(i / 50);*/
+            /*
+            Point p = new Point(4, 4);
+            builder.Init(p);
+            p = new Point(3, 0);
+            builder.SelectTile(p);
+            builder.Exit();
+            builder.EastWall();
+
+            p = new Point(0, 3);
+            builder.SelectTile(p);
+            builder.SetTheseus();
+            p = new Point(0, 2);
+            builder.SelectTile(p);
+            builder.SetMinotaur();
+
+            Console.WriteLine(builder.Test());
+
+            builder.Clear();
+
+            Console.WriteLine(builder.Test());
+
+            
+            /*filer.Init();
+            filer.SetMap(0, "Map 6");
+            filer.GetNextMap();*/
+
+            //Console.WriteLine(MapCreator.ObjectsToString(filer.GetMap().Tiles, filer.GetMap().TheTheseus, filer.GetMap().TheMinotaur));
+            Loader loader = new Loader();
+            Compressor compressor = new Compressor();
+            Decompressor decompressor;
+
+            /*string str = filer.LoadTextFile(@"H:\2015\semester 2\PR 283 C#\Theseus\level1.txt");
+            Console.WriteLine(str);
+
+            string[] stra = loader.ToStringArray(str);
+            compressor.LoadMap(stra);
+            compressor.FindSpecialCharacters();
+            compressor.CompressLevel1();
+            compressor.SetTheResult();
+            Console.WriteLine(compressor.GetLvl1());
+            Saver saver = new Saver();
+            saver.SetFileName("lvl1c1");
+            saver.SaveSingle(@"H:\2015\semester 2\PR 283 C#\Theseus", compressor.GetLvl1());*/
+
+            string newFile = filer.LoadTextFile(@"H:\2015\semester 2\PR 283 C#\Theseus\lvl1c1.txt");
+            decompressor = new Decompressor();
+            
+            decompressor.SetCompressed(newFile);
+
+
+            //try
+            //{
+                decompressor.SeparateToArrays();
+            //}
+
+                decompressor.DecompressLevel1();
+                decompressor.SetCharacters();
+            
+
+
+            /*int x = 0;
+            foreach (string st in stra)
+            {
+                Console.WriteLine(x.ToString() + st);
+                Console.WriteLine(st.Length);
+                x++;
+            }
+
+            Bridger bridger = new Bridger();
+
+            AMap newMap = new AMap();
+            newMap.Map = stra;
+
+            newMap = bridger.Convert(newMap);
+
+            Console.WriteLine(newMap.TheMinotaur.Coordinate);
+            Console.WriteLine(newMap.TheTheseus.Coordinate);*/
+
+
+
+            //filer.IsValid(@"H:\2015\semester 2\PR 283 C#\Theseus\level1.txt");
 
             Console.ReadKey();
 

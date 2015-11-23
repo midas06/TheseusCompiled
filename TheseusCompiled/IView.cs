@@ -10,6 +10,7 @@ namespace TheseusCompiled
     public interface IView
     {
         // generic
+        //void SetController(Controller theController);
         void Start();
         void Stop();
         void Display<T>(T message);

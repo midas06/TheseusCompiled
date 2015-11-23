@@ -18,23 +18,135 @@ namespace TheseusFormed
         PictureBox pbTheseus, pbMinotaur, pbExit, pbSelectedTile;
         string mediaPath;
         Point point;
+        FrmContainer parentForm;
 
         public FrmDesigner()
         {
             InitializeComponent();
         }
 
+        public void SetParentForm(FrmContainer newPF)
+        {
+            parentForm = newPF;
+        }
+
+        public Size GetSize()
+        {
+            return this.Size;
+        }
+
         public void Init(Point dimensions)
         {
-            if (builder == null)
-            {
-                builder = new LevelBuilder();
-            }
+            builder = new LevelBuilder();
             builder.Init(dimensions);
+            //Painter.SetMediaPath(@"H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\media");
             mediaPath = @"H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\media";
-            
-           
+            //SetPanelSize();
+            Draw();
         }
+
+        public void LoadUserMap(AMap theMap)
+        {
+            builder = new LevelBuilder();
+            mediaPath = @"H:\2015\semester 2\PR 283 C#\Theseus\TheseusFormed - Test\media";  
+            builder.LoadUserMap(theMap);
+            
+            tbxMapName.Text = theMap.Name;
+            //Painter.SetPanelSize(
+            //SetPanelSize();
+            Draw();
+            //RenderCharacters();
+        }
+
+        /*public void SetPanelSize()
+        {
+            int newPnlWidth, newPnlHeight, newFrmHeight, newFrmWidth;
+            newPnlWidth = (builder.GetTiles().GetLength(0) + 1) * 50;
+            newPnlHeight = (builder.GetTiles().GetLength(1) + 1) * 50;
+            pnlBackground.Size = new Size(newPnlWidth, newPnlHeight);
+
+            newFrmWidth = newPnlWidth + 250;
+
+            if (newPnlHeight > 400)
+            {
+                newFrmHeight = newPnlHeight + 40;
+                this.Size = new Size(newFrmWidth, newFrmHeight);
+            }
+            else
+            {
+                this.Size = new Size(newFrmWidth, 435);
+            }
+
+            SetButtonLocations();
+            
+        }*/
+
+        public void Draw()
+        {
+            Painter.SetPanelSize(pnlBackground, this, builder.GetTiles(), 1);
+            SetButtonLocations();
+            RenderCharacters();
+        }
+
+        
+
+        public void SetButtonLocations()
+        {
+            Point newPoint = new Point();
+
+            // nw
+            newPoint.X = pnlBackground.Width + 75;
+            newPoint.Y = 35;
+            btnNW.Location = newPoint;
+
+            // ww
+            newPoint.X = pnlBackground.Width + 25;
+            newPoint.Y = 65;
+            btnWW.Location = newPoint;
+
+            // ew
+            newPoint.X = pnlBackground.Width + 125;
+            btnEW.Location = newPoint;
+
+            // sw
+            newPoint.X = pnlBackground.Width + 75;
+            newPoint.Y = 95;
+            btnSW.Location = newPoint;
+
+            //min
+            newPoint.Y = 145;
+            newPoint.X = pnlBackground.Width + 25;
+            btnMinotaur.Location = newPoint;
+
+            // the
+            newPoint.X = pnlBackground.Width + 125;
+            btnTheseus.Location = newPoint;
+
+            // exit
+            newPoint.X = pnlBackground.Width + 75;
+            newPoint.Y = 200;
+            btnExit.Location = newPoint;
+
+            // lbl
+            newPoint.X = pnlBackground.Width + 25;
+            newPoint.Y = 235;
+            lblMapName.Location = newPoint;
+
+            // tbx
+            newPoint.Y = newPoint.Y + 20;
+            tbxMapName.Location = newPoint;
+
+            // btn
+            newPoint.X = pnlBackground.Width + 25;
+            newPoint.Y = 300;
+            btnOK.Location = newPoint;
+
+            // clear
+            newPoint.X = pnlBackground.Width + 25;
+            newPoint.Y = 375;
+            btnClear.Location = newPoint;
+        }
+
 
         protected void ShowSelectedTile(Point coordinate)
         {
@@ -127,21 +239,21 @@ namespace TheseusFormed
             g.Dispose();
         }
 
-        protected Point SetLocation(Point thePoint, int multiplier)
+        /*protected Point SetLocation(Point thePoint, int multiplier)
         {
             Point newLocation = new Point();
             newLocation.X = (multiplier * thePoint.X) + 10;
             newLocation.Y = (multiplier * thePoint.Y) + 5;
             return newLocation;
-        }
+        }*/
 
-        protected void RenderCharacters()
+       /* protected void RenderCharacters()
         {
             if (builder.GetTheseus() != null)
             {
                 pbTheseus = new PictureBox();
                 pbTheseus.Name = "pbTheseus";
-                pbTheseus.Location = SetLocation(builder.GetTheseus().Coordinate, 50);
+                pbTheseus.Location = Painter.SetLocation(builder.GetTheseus().Coordinate, 50);
                 pbTheseus.Image = Image.FromFile(mediaPath + @"\images\theseus.png");
                 pbTheseus.Size = pbTheseus.Image.Size;
                 pnlBackground.Controls.Add(pbTheseus);
@@ -152,7 +264,7 @@ namespace TheseusFormed
             {
                 pbMinotaur = new PictureBox();
                 pbMinotaur.Name = "pbMinotaur";
-                pbMinotaur.Location = SetLocation(builder.GetMinotaur().Coordinate, 50);
+                pbMinotaur.Location = Painter.SetLocation(builder.GetMinotaur().Coordinate, 50);
                 pbMinotaur.Image = Image.FromFile(mediaPath + @"\images\minotaur.png");
                 pbMinotaur.Size = pbMinotaur.Image.Size;
                 pnlBackground.Controls.Add(pbMinotaur);
@@ -163,7 +275,7 @@ namespace TheseusFormed
             {
                 pbExit = new PictureBox();
                 pbExit.Name = "pbExit";
-                Point exitPoint = SetLocation(builder.GetExit().Coordinate, 50);
+                Point exitPoint = Painter.SetLocation(builder.GetExit().Coordinate, 50);
                 exitPoint.X = exitPoint.X + 3;
                 exitPoint.Y = exitPoint.Y + 3;
                 pbExit.Location = exitPoint;
@@ -174,7 +286,116 @@ namespace TheseusFormed
                 pbExit.BringToFront();
 
             }
+        }*/
+
+        protected void RenderCharacters()
+        {
+            pbTheseus = new PictureBox();
+            pbTheseus.Name = "pbTheseus";
+            pbTheseus.Image = Image.FromFile(mediaPath + @"\images\theseus.png");
+            pbTheseus.Size = pbTheseus.Image.Size;
+            pnlBackground.Controls.Add(pbTheseus);
+            
+
+            if (builder.GetTheseus() != null)
+            {
+                pbTheseus.Location = Painter.SetLocation(builder.GetTheseus().Coordinate, 50);
+            }
+            else
+            {
+                pbTheseus.Location = new Point(-50, 0);
+            }
+
+            pbMinotaur = new PictureBox();
+            pbMinotaur.Name = "pbMinotaur";
+            
+            pbMinotaur.Image = Image.FromFile(mediaPath + @"\images\minotaur.png");
+            pbMinotaur.Size = pbMinotaur.Image.Size;
+            pnlBackground.Controls.Add(pbMinotaur);
+            
+
+            if (builder.GetMinotaur() != null)
+            {
+                pbMinotaur.Location = Painter.SetLocation(builder.GetMinotaur().Coordinate, 50);
+            }
+            else
+            {
+                pbMinotaur.Location = new Point(-50, 25);
+            }
+
+            pbExit = new PictureBox();
+            pbExit.Name = "pbExit";
+            pbExit.Image = Image.FromFile(mediaPath + @"\images\exit.gif");
+            pbExit.Size = new Size(30, 30);
+            pbExit.SizeMode = PictureBoxSizeMode.Zoom;
+            pnlBackground.Controls.Add(pbExit);
+            
+
+            if (builder.GetExit() != null)
+            {
+                Point exitPoint = Painter.SetLocation(builder.GetExit().Coordinate, 50);
+                exitPoint.X = exitPoint.X + 3;
+                exitPoint.Y = exitPoint.Y + 3;
+                pbExit.Location = exitPoint;
+            }
+            else
+            {
+                pbExit.Location = new Point(-50, 50);
+            }
+
+            pbSelectedTile = new PictureBox();
+            pbSelectedTile.Name = "pbSelectedTile";
+            pbSelectedTile.Location = new Point(-50, 75);
+            pbSelectedTile.Size = new Size(45, 45);
+            pbSelectedTile.BackColor = Color.Honeydew;
+            pnlBackground.Controls.Add(pbSelectedTile);
+            pbSelectedTile.BringToFront();
+
+            pbTheseus.BringToFront();
+            pbExit.BringToFront();
+            pbMinotaur.BringToFront();
+
         }
+
+        public void ClearTheseus()
+        {
+            if (builder.GetTheseus() == null && pbTheseus != null)
+            {
+                pnlBackground.Controls.Remove(pbTheseus);
+                pbTheseus = null;
+            }
+            this.Invalidate();
+            Refresh();
+        }
+        public void ClearMinotaur()
+        {
+            if (builder.GetMinotaur() == null && pbMinotaur != null)
+            {
+                pnlBackground.Controls.Remove(pbMinotaur);
+                pbMinotaur = null;
+            }
+            this.Invalidate();
+            Refresh();
+        }
+        public void ClearExit()
+        {
+            if (builder.GetExit() == null && pbExit != null)
+            {
+                pnlBackground.Controls.Remove(pbExit);
+                pbExit = null;
+            }
+            this.Invalidate();
+            Refresh();
+        }
+        public void ClearSelected()
+        {
+            pnlBackground.Controls.Remove(pbSelectedTile);
+            pbSelectedTile = null;
+            this.Invalidate();
+            Refresh();
+        }
+         
+
 
         private void btnNW_Click(object sender, EventArgs e)
         {
@@ -221,7 +442,7 @@ namespace TheseusFormed
             
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        /*private void btnExit_Click(object sender, EventArgs e)
         {
             if (point != null)
             {
@@ -232,7 +453,7 @@ namespace TheseusFormed
                 }
                 if (pbExit != null)
                 {
-                    Point exitPoint = SetLocation(builder.GetExit().Coordinate, 50);
+                    Point exitPoint = Painter.SetLocation(builder.GetExit().Coordinate, 50);
                     exitPoint.X = exitPoint.X + 3;
                     exitPoint.Y = exitPoint.Y + 3;
                     pbExit.Location = exitPoint;
@@ -241,9 +462,23 @@ namespace TheseusFormed
                 Refresh();
             }
             
+        }*/
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            if (point != null)
+            {
+                builder.Exit();
+                Point exitPoint = Painter.SetLocation(builder.GetExit().Coordinate, 50);
+                exitPoint.X = exitPoint.X + 3;
+                exitPoint.Y = exitPoint.Y + 3;
+                pbExit.Location = exitPoint;
+                this.Invalidate();
+                Refresh();
+            }
+
         }
 
-        private void btnTheseus_Click(object sender, EventArgs e)
+        /*private void btnTheseus_Click(object sender, EventArgs e)
         {
             if (point != null)
             {
@@ -254,15 +489,28 @@ namespace TheseusFormed
                 }
                 if (pbTheseus != null)
                 {
-                    pbTheseus.Location = SetLocation(builder.GetTheseus().Coordinate, 50);
+                    pbTheseus.Location = Painter.SetLocation(builder.GetTheseus().Coordinate, 50);
                 }
                 this.Invalidate();
                 Refresh();
             }
             
+        }*/
+        private void btnTheseus_Click(object sender, EventArgs e)
+        {
+            if (point != null)
+            {
+                builder.SetTheseus();
+                pbTheseus.Location = Painter.SetLocation(builder.GetTheseus().Coordinate, 50);
+                this.Invalidate();
+                Refresh();
+            }
+
+
         }
 
-        private void btnMinotaur_Click(object sender, EventArgs e)
+
+        /*private void btnMinotaur_Click(object sender, EventArgs e)
         {
             if (point != null)
             {
@@ -273,13 +521,26 @@ namespace TheseusFormed
                 }
                 if (pbMinotaur != null)
                 {
-                    pbMinotaur.Location = SetLocation(builder.GetMinotaur().Coordinate, 50);
+                    pbMinotaur.Location = Painter.SetLocation(builder.GetMinotaur().Coordinate, 50);
                 }
                 this.Invalidate();
                 Refresh();
             }
             
+        }*/
+        private void btnMinotaur_Click(object sender, EventArgs e)
+        {
+            if (point != null)
+            {
+                builder.SetMinotaur();
+                pbMinotaur.Location = Painter.SetLocation(builder.GetMinotaur().Coordinate, 50);
+                this.Invalidate();
+                Refresh();
+            }
+
+
         }
+
 
         protected bool IsValid()
         {
@@ -302,7 +563,18 @@ namespace TheseusFormed
             if (filer.MapNameUsed(tbxMapName.Text))
             {
                 MessageBox.Show("This map name is already used");
-                return false;
+                DialogResult dialogResult = MessageBox.Show("Do you want to overwrite the existing map?", "Overwrite", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    filer.ConfirmOverwrite(true);
+                    return true;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    filer.ConfirmOverwrite(false);
+                    return false;
+                }
+                
             }
             return true;
         
@@ -314,15 +586,31 @@ namespace TheseusFormed
         {
             if (IsValid())
             {
-                filer.NewUserMap(tbxMapName.Text, builder.Export());
-                MessageBox.Show("Your map has been saved!");
+                DialogResult dialogResult = MessageBox.Show("Are you sure?", "Confirm selection", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    filer.NewUserMap(tbxMapName.Text, builder.Export());
+                    MessageBox.Show("Your map has been saved!");
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // nothing
+                }
             }
-            
         }
 
+     
 
-
-
-
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            builder.Clear();
+            ClearTheseus();
+            ClearMinotaur();
+            ClearExit();
+            ClearSelected();
+            RenderCharacters();
+            this.Invalidate();
+            Refresh();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace TheseusFormed
 
         public void Init()
         {
-            Application.Run(new FrmFilerLoad());
+            Application.Run(new FrmFilerLoadGame());
         }
 
         public Point UserKeyPress(Keys theKeypress)
